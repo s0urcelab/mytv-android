@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +35,8 @@ import top.yogiczy.mytv.data.entities.EpgProgramme.Companion.progress
 import top.yogiczy.mytv.data.entities.Iptv
 import top.yogiczy.mytv.ui.theme.LeanbackTheme
 import top.yogiczy.mytv.ui.utils.handleLeanbackKeyEvents
+import coil.compose.AsyncImage
+import coil.compose.rememberImagePainter
 
 @Composable
 fun LeanbackPanelIptvItem(
@@ -122,6 +125,18 @@ fun LeanbackPanelIptvItem(
                     modifier = Modifier.alpha(0.8f),
                     color = if (isFocused) MaterialTheme.colorScheme.background
                     else MaterialTheme.colorScheme.onBackground,
+                )
+            }
+
+            // 节目台标logo
+            if (iptv.channelLogo != "") {
+                AsyncImage(
+                    model = iptv.channelLogo,
+                    contentDescription = "Channel Logo", // 提供适当的内容描述
+                    modifier = Modifier
+                        .align(Alignment.TopEnd) // 定位到右上角
+                        .size(24.dp) // 根据需要调整大小
+                        .padding(4.dp) // 根据需要添加内边距
                 )
             }
 
